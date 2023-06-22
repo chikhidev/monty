@@ -12,34 +12,32 @@ int main(int ac, char *av[])
 FILE *file;
 char *line = NULL, *line_args;
 size_t line_size;
-int line_counter = 0;
+unsigned int line_counter = 1;
 stack_t *head = NULL;
 
 if (ac != 2)
-{
-fprintf(stderr, "USAGE: monty file\n");
-exit(EXIT_FAILURE);
-}
+err_usage();
 
 file = fopen(av[1], "r");
 
 if (!file)
-{
-fprintf(stderr, "Error: Can't open file %s\n", av[1]);
-exit(EXIT_FAILURE);
-}
+err_file(av[1]);
 
 while (_getline(&line, &line_size, file) != -1)
 {
 line_args = strtok(line, "\n");
-line_counter++;
 
-if (line_args)
+if (line_args && line_size > 0)
+{
 find_func(line_args, line_counter, &head);
+}
+line_counter++;
 }
 
 if (line)
 free(line);
+
+free_all(&head);
 fclose(file);
 exit(EXIT_SUCCESS);
 

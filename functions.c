@@ -18,6 +18,7 @@ curr = curr->next;
 }
 }
 
+
 /**
 * push - Push a value onto the stack
 * @head: Double pointer to the top of the stack
@@ -26,12 +27,8 @@ curr = curr->next;
 void push(stack_t **head, int val)
 {
 stack_t *new_node = (stack_t *)malloc(sizeof(stack_t));
-
 if (new_node == NULL)
-{
-fprintf(stderr, "Error: malloc failed\n");
-exit(EXIT_FAILURE);
-}
+err_malloc();
 
 new_node->n = val;
 new_node->prev = NULL;
@@ -43,32 +40,30 @@ new_node->next = (*head);
 }
 else
 new_node->next = NULL;
-
 (*head) = new_node;
-
 }
 
 
 /**
 * pop - Pop the top element from the stack
 * @head: Double pointer to the top of the stack
+* @line: line counter
 */
-void pop(stack_t **head)
+void pop(stack_t **head, int line)
 {
 stack_t *next;
 if (*head != NULL)
 {
 next = (*head)->next;
-next->prev = NULL;
-
 (*head)->next = NULL;
 *head = next;
+if (next != NULL)
+{
+next->prev = NULL;
+}
 }
 else
-{
-printf("L<line_number>: can't pop an empty stack");
-exit(1);
-}
+err_pop(line);
 }
 
 /**

@@ -1,10 +1,10 @@
 #include "monty.h"
 /**
- * remove_space - Remove space and tab characters from a string
- * @str: The input string to remove spaces and tabs from
- *
- * Return: A new dynamically allocated string with spaces and tabs removed
- */
+* remove_space - Remove space and tab characters from a string
+* @str: The input string to remove spaces and tabs from
+*
+* Return: A new dynamically allocated string with spaces and tabs removed
+*/
 char *remove_space(char *str)
 {
 char *holder = (char *)malloc(strlen(str) + 1);
