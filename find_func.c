@@ -21,7 +21,14 @@ param = strtok(NULL, " \t");
 param = remove_space(param);
 
 if (param == NULL)
+<<<<<<< HEAD
 err_push(line);
+=======
+{
+fprintf(stderr, "L%d: usage: push integer\n", line);
+exit(EXIT_FAILURE);
+}
+>>>>>>> 563e8344644ab1b51cb7ae169bcbac2cf4ea2e5e
 
 int_par = atoi(param);
 if (int_par == 0 && strcmp(param, "0") != 0)
@@ -34,6 +41,13 @@ else if (strcmp(cmd, "pall") == 0)
 pall(*head);
 }
 else
+<<<<<<< HEAD
 err_unk(line, remove_space(cmd));
+=======
+{
+fprintf(stderr, "L%d: unknown instruction %s\n", line, remove_space(cmd));
+exit(EXIT_FAILURE);
+}
+>>>>>>> 563e8344644ab1b51cb7ae169bcbac2cf4ea2e5e
 }
 
