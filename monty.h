@@ -48,7 +48,13 @@ typedef struct instruction_s
 void pall(stack_t **head, unsigned int counter);
 void push(stack_t **head, unsigned int counter);
 void pint(stack_t **head, unsigned int counter);
+void swap(stack_t **head, unsigned int counter);
 void pop(stack_t **head, unsigned int counter);
+void nop(stack_t **head, unsigned int counter);
+void add(stack_t **head, unsigned int counter);
+void sub(stack_t **head, unsigned int counter);
+void mul(stack_t **head, unsigned int counter);
+void _div(stack_t **head, unsigned int counter);
 
 /* Selector structure */
 void select_func(stack_t **head, char *token, unsigned int counter);
