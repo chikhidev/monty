@@ -11,7 +11,10 @@ char *holder = (char *)malloc(strlen(str) + 1);
 int i = 0, j = 0;
 
 if (holder == NULL)
-return (str);
+{
+fprintf(stderr, "Error: malloc failed\n");
+exit(EXIT_FAILURE);
+}
 
 while (str[i] != '\0')
 {

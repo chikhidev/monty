@@ -9,10 +9,7 @@ void pall(stack_t *head)
 stack_t *curr = head;
 
 if (head == NULL)
-{
-printf("Stack is empty.\n");
 return;
-}
 
 while (curr != NULL)
 {
@@ -20,7 +17,6 @@ printf("%d\n", curr->n);
 curr = curr->next;
 }
 }
-
 
 /**
 * push - Push a value onto the stack
