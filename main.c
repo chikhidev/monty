@@ -30,8 +30,6 @@ line_args = strtok(line, "\n");
 if (line_args && line_size > 0)
 {
 find_func(line_args, line_counter, &head);
-line_counter++;
-}
 }
 line_counter++;
 }
