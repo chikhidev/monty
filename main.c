@@ -1,6 +1,4 @@
 #include "monty.h"
-#include <stdio.h>
-
 /**
 * main - Entry point of the program
 * @ac: Number of command-line arguments
@@ -15,7 +13,7 @@ FILE *file;
 char *line = NULL, *line_args;
 size_t line_size;
 int line_counter = 0;
-stack_t *top = NULL;
+stack_t *head = NULL;
 
 if (ac != 2)
 {
@@ -37,8 +35,13 @@ line_args = strtok(line, "\n");
 line_counter++;
 
 if (line_args)
-find_func(line_args, line_counter, top);
+find_func(line_args, line_counter, &head);
 }
+
+if (line)
+free(line);
+fclose(file);
+exit(EXIT_SUCCESS);
 
 return (0);
 }

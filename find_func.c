@@ -6,22 +6,24 @@
 * @line: Line number
 * @head: Pointer to the top of the stack
 */
-void find_func(char *line_args, int line, stack_t *head)
+void find_func(char *line_args, int line, stack_t **head)
 {
 char *cmd = strtok(line_args, " ");
 char *param;
 int int_par;
 
+cmd = remove_space(cmd);
 
 if (strcmp(cmd, "push") == 0)
 {
 param = strtok(NULL, " ");
-
 if (param == NULL)
 {
 fprintf(stderr, "L%d: usage: push integer\n", line);
 exit(EXIT_FAILURE);
 }
+
+param = remove_space(param);
 
 int_par = atoi(param);
 if (int_par == 0 && strcmp(param, "0") != 0)
@@ -30,18 +32,21 @@ fprintf(stderr, "L%d: usage: push integer\n", line);
 exit(EXIT_FAILURE);
 }
 
-push(&head, int_par);
+push(head, int_par);
 }
 else if (strcmp(cmd, "pall") == 0)
 {
-pall(head);
+pall(*head);
 }
-
+else if (strcmp(cmd, "pint") == 0)
+{
+pint(head, line);
+}
 else
 {
-fprintf(stderr, "L%d: unknown instruction %s\n", line, cmd);
+fprintf(stderr, "L%d: unknown instruction %s\n", line, remove_space(cmd));
 exit(EXIT_FAILURE);
 }
 
-
 }
+

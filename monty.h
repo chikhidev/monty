@@ -37,13 +37,14 @@ char *opcode;
 void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-
 ssize_t _getline(char **line, size_t *line_size, FILE *stream);
-void find_func(char *line_args, int line, stack_t *head);
+void find_func(char *line_args, int line, stack_t **head);
+
+char *remove_space(char *str);
 
 void pall(stack_t *head);
 void push(stack_t **head, int val);
 void pop(stack_t **head);
-void pint(stack_t **head);
+void pint(stack_t **head, int line);
 
 #endif

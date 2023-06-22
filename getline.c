@@ -25,7 +25,7 @@ return (-1);
 if (!(*line))
 return (-1);
 
-while ((c = fgetc(stream)) != EOF)
+while (((c = fgetc(stream)) != EOF) && (c != '\n'))
 {
 if (i >= *line_size)
 {
@@ -36,12 +36,12 @@ return (-1);
 }
 
 (*line)[i++] = (char)c;
-
-if (c == '\n')
-break;
 }
 
 (*line)[i] = '\0';
+
+if (c == EOF && i == 0)
+return (-1);
 
 return ((ssize_t)i);
 }
