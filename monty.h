@@ -42,9 +42,10 @@ void find_func(char *line_args, int line, stack_t **head);
 
 char *remove_space(char *str);
 
+void free_all(stack_t **head);
 void pall(stack_t *head);
 void push(stack_t **head, int val);
-void pop(stack_t **head);
+void pop(stack_t **head, int line);
 void pint(stack_t **head, int line);
 
 #endif
