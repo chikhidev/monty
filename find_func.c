@@ -1,39 +1,36 @@
 #include "monty.h"
-
 /**
-* find_func - Find and execute the appropriate command based on input
-* @line_args: Line arguments string
-* @line: Line number
-* @head: Pointer to the top of the stack
-*/
-void find_func(char *line_args, int line, stack_t **head)
+ * select_func - Select function for needing
+ * @head: Head of the list
+ * @token: Parameters for entry
+ * @counter: Number of the line
+ *
+ * Return: Void - Nothing
+ **/
+void select_func(stack_t **head, char *token, unsigned int counter)
 {
-char *cmd = strtok(line_args, " \t");
-char *param;
-int int_par;
+instruction_t selector[] = {
+{"pall", pall},
+{"push", push},
+{"pint", pint},
+{"pop", pop},
+{NULL, NULL}
+};
 
-if (cmd == NULL || cmd[0] == '#')
+int travel = 0;
+
+while (travel < 10)
+{
+if (strcmp(selector[travel].opcode, token) == 0)
+{
+selector[travel].f(head, counter);
 return;
-
-if (strcmp(cmd, "push") == 0)
+}
+travel++;
+}
+if (token[0] != '#')
 {
-param = strtok(NULL, " \t");
-param = remove_space(param);
-
-if (param == NULL)
-err_push(line);
-
-int_par = atoi(param);
-if (int_par == 0 && strcmp(param, "0") != 0)
-err_push(line);
-
-push(head, int_par);
+fprintf(stderr, "L%u: unknown instruction %s\n", counter, token);
+exit(EXIT_FAILURE);
 }
-else if (strcmp(cmd, "pall") == 0)
-{
-pall(*head);
 }
-else
-err_unk(line, remove_space(cmd));
-}
-
