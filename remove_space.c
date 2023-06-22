@@ -7,14 +7,8 @@
 */
 char *remove_space(char *str)
 {
-char *holder = (char *)malloc(strlen(str) + 1);
+char *holder = str;
 int i = 0, j = 0;
-
-if (holder == NULL)
-{
-fprintf(stderr, "Error: malloc failed\n");
-exit(EXIT_FAILURE);
-}
 
 while (str[i] != '\0')
 {

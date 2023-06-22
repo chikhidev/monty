@@ -38,25 +38,22 @@ void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
 ssize_t _getline(char **line, size_t *line_size, FILE *stream);
-void find_func(char *line_args, int line, stack_t **head);
+void find_func(stack_t **head, char *token, unsigned int line);
 
 char *remove_space(char *str);
 
-<<<<<<< HEAD
 /*errors*/
 void err_push(int line);
-void err_malloc();
-void err_usage();
+void err_malloc(void);
+void err_usage(void);
 void err_file(char *arg);
 void err_pop(int line);
 void err_unk(int line, char *cmd);
 
-=======
->>>>>>> 563e8344644ab1b51cb7ae169bcbac2cf4ea2e5e
 void free_all(stack_t **head);
-void pall(stack_t *head);
-void push(stack_t **head, int val);
-void pop(stack_t **head, int line);
-void pint(stack_t **head, int line);
+void pall(stack_t **head, unsigned int line);
+void push(stack_t **head, unsigned int line);
+void pop(stack_t **head, unsigned int line);
+void pint(stack_t **head, unsigned int line);
 
 #endif

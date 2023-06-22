@@ -2,52 +2,39 @@
 
 /**
 * find_func - Find and execute the appropriate command based on input
-* @line_args: Line arguments string
+* @token: Line arguments string
 * @line: Line number
 * @head: Pointer to the top of the stack
 */
-void find_func(char *line_args, int line, stack_t **head)
+void find_func(stack_t **head, char *token, unsigned int line)
 {
-char *cmd = strtok(line_args, " \t");
-char *param;
-int int_par;
+instruction_t instructions[] = {
+{"push", push},
+{"pall", pall},
+{"pint", pint},
+{"pop", pop},
+{NULL, NULL}
+};
+
+unsigned long i = 0;
+
+char *cmd = strtok(token, " \t");
 
 if (cmd == NULL || cmd[0] == '#')
 return;
 
-if (strcmp(cmd, "push") == 0)
-{
-param = strtok(NULL, " \t");
-param = remove_space(param);
+cmd = remove_space(cmd);
 
-if (param == NULL)
-<<<<<<< HEAD
-err_push(line);
-=======
+while (i < (sizeof(instructions) / sizeof(instructions[0])))
 {
-fprintf(stderr, "L%d: usage: push integer\n", line);
-exit(EXIT_FAILURE);
-}
->>>>>>> 563e8344644ab1b51cb7ae169bcbac2cf4ea2e5e
-
-int_par = atoi(param);
-if (int_par == 0 && strcmp(param, "0") != 0)
-err_push(line);
-
-push(head, int_par);
-}
-else if (strcmp(cmd, "pall") == 0)
+if (strcmp(instructions[i].opcode, cmd) == 0)
 {
-pall(*head);
+instructions[i].f(head, line);
+return;
 }
-else
-<<<<<<< HEAD
-err_unk(line, remove_space(cmd));
-=======
-{
-fprintf(stderr, "L%d: unknown instruction %s\n", line, remove_space(cmd));
-exit(EXIT_FAILURE);
-}
->>>>>>> 563e8344644ab1b51cb7ae169bcbac2cf4ea2e5e
+i++;
 }
 
+if (cmd[0] != '#')
+err_unk(line, cmd);
+}
