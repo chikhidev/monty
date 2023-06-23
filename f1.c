@@ -21,7 +21,7 @@ exit(EXIT_FAILURE);
 
 while (str_test[count] != '\0')
 {
-if (str_test[count] && !isdigit(str_test[count]) != '-')
+if (!isdigit(str_test[count]) && str_test[count] != '-')
 {
 fprintf(stderr, "L%u: usage: push integer\n", line);
 exit(EXIT_FAILURE);
