@@ -23,6 +23,9 @@ instruction_t options[] = {
 {"div", _div},
 {"pstr", pstr},
 {"rotl", rotl},
+{"rotr", rotr},
+{"stack", stack},
+{"queue", queue},
 {NULL, NULL}
 };
 

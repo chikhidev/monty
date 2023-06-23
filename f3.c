@@ -87,3 +87,35 @@ last->next = temp;
 temp->prev = last;
 temp->next = NULL;
 }
+
+
+/**
+ * rotr - Rotates the stack to the bottom
+ * @head: Head of the list
+ * @line: Number of the line
+ * Return: Void - Nothing
+ **/
+void rotr(stack_t **head, unsigned int line)
+{
+stack_t *last, *second_last;
+
+(void)line;
+
+if (*head == NULL || (*head)->next == NULL)
+return;
+
+last = *head;
+second_last = *head;
+
+while (last->next != NULL)
+{
+second_last = last;
+last = last->next;
+}
+
+second_last->next = NULL;
+last->next = *head;
+last->prev = NULL;
+(*head)->prev = last;
+*head = last;
+}

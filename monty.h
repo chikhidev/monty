@@ -1,5 +1,5 @@
-#ifndef MONTY
-#define MONTY
+#ifndef MONTY_H
+#define MONTY_H
 
 /* Libraries */
 #include <stdio.h>
@@ -10,6 +10,7 @@
 
 #define LIMITER " \n"
 
+int stack_mode = 1;
 
 /* Structures Doubly linked lists */
 
@@ -63,5 +64,10 @@ void mul(stack_t **head, unsigned int line);
 void _div(stack_t **head, unsigned int line);
 void pstr(stack_t **head, unsigned int line);
 void rotl(stack_t **head, unsigned int line);
+void rotr(stack_t **head, unsigned int line);
+
+
+void stack(stack_t **head, unsigned int line);
+void queue(stack_t **head, unsigned int line);
 
 #endif
