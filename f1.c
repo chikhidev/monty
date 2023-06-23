@@ -17,7 +17,6 @@ if (!str_n)
 fprintf(stderr, "L%u: usage: push integer\n", line);
 exit(EXIT_FAILURE);
 }
-
 while (str_n[cont] != '\0')
 {
 if (!isdigit(str_n[cont]) && str_n[cont] != '-')
@@ -27,14 +26,12 @@ exit(EXIT_FAILURE);
 }
 cont++;
 }
-
 new_node = malloc(sizeof(stack_t));
 if (new_node == NULL)
 {
 fprintf(stderr, "Error: malloc failed\n");
 exit(EXIT_FAILURE);
 }
-
 new_node->n = atoi(str_n);
 new_node->prev = NULL;
 
