@@ -1,5 +1,5 @@
-#ifndef _MONTY_HOL
-#define _MONTY_HOL
+#ifndef MONTY
+#define MONTY
 
 /* Libraries */
 #include <stdio.h>
@@ -43,6 +43,12 @@ char *opcode;
 void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+ssize_t _getline(char **line, size_t *line_size, FILE *stream);
+
+void chooser(stack_t **head, char *token, unsigned int line);
+
+void freeer(stack_t **head);
+
 /* Prototypes basic operations */
 
 void pall(stack_t **head, unsigned int line);
@@ -55,12 +61,7 @@ void add(stack_t **head, unsigned int line);
 void sub(stack_t **head, unsigned int line);
 void mul(stack_t **head, unsigned int line);
 void _div(stack_t **head, unsigned int line);
+void pstr(stack_t **head, unsigned int line);
 
 
-ssize_t _getline(char **line, size_t *line_size, FILE *stream);
-/* Selector structure */
-void chooser(stack_t **head, char *token, unsigned int line);
-/* Free memory */
-void freeer(stack_t **head);
-
-#endif /* _MONTY_HOL */
+#endif

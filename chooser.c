@@ -1,12 +1,13 @@
 #include "monty.h"
+
 /**
- * chooser - Select function for needing
- * @head: Head of the list
- * @token: Parameters for entry
- * @line: Number of the line
- *
- * Return: Void - Nothing
- **/
+* chooser - Select function for needing
+* @head: Head of the list
+* @token: Parameters for entry
+* @line: Number of the line
+*
+* Return: Void - Nothing
+**/
 void chooser(stack_t **head, char *token, unsigned int line)
 {
 instruction_t options[] = {
@@ -20,12 +21,13 @@ instruction_t options[] = {
 {"sub", sub},
 {"mul", mul},
 {"div", _div},
+{"pstr", pstr},
 {NULL, NULL}
 };
 
 int i = 0;
 
-while (i < 10)
+while (i < 11)
 {
 if (strcmp(options[i].opcode, token) == 0)
 {
