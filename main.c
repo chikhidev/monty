@@ -1,48 +1,46 @@
 #include "monty.h"
 
 /**
-* main - Entry point of the program
-* @ac: Number of command-line arguments
-* @av: Array of command-line arguments
-*
-* Return: 0 on success
-*/
-int main(int ac, char *av[])
+* main - Main function
+* @argc: Arguments counter
+* @argv: Arguments vector
+* Return: Default return value
+**/
+int main(int argc, char *argv[])
 {
-FILE *file;
-char *line = NULL, *line_args;
-size_t line_size;
-unsigned int line_counter = 1;
+char *lineptr = NULL;
+unsigned int counter = 0;
 stack_t *head = NULL;
+ssize_t read_file;
+size_t bufsize;
+FILE *fl;
+char *tokens;
 
-if (ac != 2)
-err_usage();
-
-file = fopen(av[1], "r");
-
-if (!file)
-err_file(av[1]);
-
-while (_getline(&line, &line_size, file) != -1)
+if (argc != 2)
 {
-line_args = strtok(line, "\n");
+fprintf(stderr, "USAGE: monty file\n");
+return (EXIT_FAILURE);
+}
 
-line_counter++;
-if (line_args)
-find_func(&head, line_args, line_counter);
+fl = fopen(argv[1], "r");
+if (!fl)
+{
+fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+return (EXIT_FAILURE);
+}
 
-else if (!line_args)
+while ((read_file = _getline(&lineptr, &bufsize, fl)) != -1)
+{
+counter++;
+tokens = strtok(lineptr, LIMITER);
+if (!tokens)
 continue;
 
-
-
+chooser(&head, tokens, counter);
 }
 
-if (line)
-free(line);
-
-free_all(&head);
-fclose(file);
-exit(EXIT_SUCCESS);
+free(lineptr);
+free_stack(&head);
+fclose(fl);
+return (EXIT_SUCCESS);
 }
-

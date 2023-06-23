@@ -1,21 +1,21 @@
 #include "monty.h"
 /**
-* free_all - Frees memory in stack
-* @head: Head of the list
-* Return: Void - Nothing
-**/
+ * free_stack - Frees memory in stack
+ * @head: Head of the list
+ * Return: Void - Nothing
+ **/
 
-void free_all(stack_t **head)
+void free_stack(stack_t **head)
 {
-stack_t *tmp;
-stack_t *head_list;
+	stack_t *curr;
+	stack_t *stack_head;
 
-head_list = *head;
+	stack_head = *head;
 
-while (head_list)
-{
-tmp = head_list;
-head_list = head_list->next;
-free(tmp);
-}
+	while (stack_head)
+	{
+		curr = stack_head;
+		stack_head = stack_head->next;
+		free(curr);
+	}
 }
