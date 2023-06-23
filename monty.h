@@ -62,6 +62,6 @@ void sub(stack_t **head, unsigned int line);
 void mul(stack_t **head, unsigned int line);
 void _div(stack_t **head, unsigned int line);
 void pstr(stack_t **head, unsigned int line);
-
+void rotl(stack_t **head, unsigned int line);
 
 #endif

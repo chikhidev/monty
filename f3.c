@@ -46,6 +46,8 @@ void pstr(stack_t **head, unsigned int line)
 {
 stack_t *current = *head;
 
+(void)line;
+
 while (current != NULL && current->n > 0 && current->n <= 127)
 {
 if (current->n == '\0')
@@ -56,4 +58,32 @@ current = current->next;
 }
 
 putchar('\n');
+}
+
+/**
+ * rotl - Rotates the stack to the top
+ * @head: Head of the list
+ * @line: Number of the line
+ * Return: Void - Nothing
+ **/
+void rotl(stack_t **head, unsigned int line)
+{
+stack_t *temp, *last;
+
+(void)line;
+
+if (*head == NULL || (*head)->next == NULL)
+return;
+
+temp = *head;
+last = *head;
+
+while (last->next != NULL)
+last = last->next;
+
+*head = (*head)->next;
+(*head)->prev = NULL;
+last->next = temp;
+temp->prev = last;
+temp->next = NULL;
 }
